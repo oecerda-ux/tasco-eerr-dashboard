@@ -1631,7 +1631,7 @@ function hexAlpha(hex, alpha){
 'use strict';
 
 function renderConsolidadoTab(){
-  const projects = PROJECTS;
+  const projects = [...PROJECTS];
   const allYears = Object.keys(CONSOL_DATA.yearTotals).map(Number).sort((a,b)=>a-b);
 
   const grandTotal = Object.values(CONSOL_DATA.yearTotals).reduce((a,r)=>({ingresos:a.ingresos+r.ingresos, costos:a.costos+r.costos, resultado:a.resultado+r.resultado}), {ingresos:0,costos:0,resultado:0});
@@ -1643,6 +1643,15 @@ function renderConsolidadoTab(){
     projTotals[r.proj].ingresos += r.ingresos;
     projTotals[r.proj].costos += r.costos;
     projTotals[r.proj].resultado += r.resultado;
+  });
+  // Ordenar proyectos por relevancia (actividad real) en vez del orden crudo de centro de costo:
+  // los que tienen ingreso por contrato de construcción y/o costos incurridos a la fecha van primero.
+  projects.sort((a,b) => {
+    const ta = projTotals[a]||{ingresos:0,costos:0};
+    const tb = projTotals[b]||{ingresos:0,costos:0};
+    const actA = Math.abs(ta.ingresos) + Math.abs(ta.costos);
+    const actB = Math.abs(tb.ingresos) + Math.abs(tb.costos);
+    return actB - actA;
   });
 
   const annualStackData = allYears.map(y => {
