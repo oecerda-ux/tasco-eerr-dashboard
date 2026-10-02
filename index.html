@@ -1124,8 +1124,10 @@ function initEERRCharts(annualData, monthlyData, projKey){
 
   const av = AVANCE_DATA[projKey];
   if(av && av.serie && av.serie.length && document.getElementById("chart-avance-scurve")){
-    const realFull = (av.serie||[]).slice().sort((a,b)=>a.mes.localeCompare(b.mes));
-    // cortar el programado apenas llega a 100% — no arrastrar una línea plana después
+    const realFullSorted = (av.serie||[]).slice().sort((a,b)=>a.mes.localeCompare(b.mes));
+    // cortar real y programado apenas cada uno llega a 100% — no arrastrar una línea plana después
+    const realFull = [];
+    for(const p of realFullSorted){ realFull.push(p); if(p.pct>=100) break; }
     const progFull = (av.serieProg||[]).slice().sort((a,b)=>a.mes.localeCompare(b.mes));
     const progTrunc = [];
     for(const p of progFull){ progTrunc.push(p); if(p.pct>=100) break; }
