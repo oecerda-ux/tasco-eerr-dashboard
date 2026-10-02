@@ -365,6 +365,7 @@ const state = {
   rd:     { txnFilter:"all", search:"", page:0, currency:"uf", mode:"project", eerrEmpresa:null, eerrYear:null, eerrProy:null, eerrNombre:null },
   casos:  { filterMin:0, sortBy:"total", view:"tabla" },
   eerrFull: { empresa:"TASCO", year:"2026", view:"consolidado", proySel:"all", expanded:{} },
+  avance: { view:"acum" },
 };
 
 // ── CHART REGISTRY (destroy previous instances before re-render) ──
@@ -1033,7 +1034,13 @@ function renderEERRTab(){  const projKey = state.activeProject;
         <div class="chip-list" style="margin-top:10px">${yearChips}</div>
         ${AVANCE_DATA[projKey] && AVANCE_DATA[projKey].serie && AVANCE_DATA[projKey].serie.length ? `
         <div style="margin-top:14px;padding-top:12px;border-top:1px solid ${C.border}">
-          <div class="panel-title" style="margin-bottom:6px">Curva S — Avance F&iacute;sico Real vs. Programado</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+            <div class="panel-title" style="margin-bottom:0">Curva S — Avance F&iacute;sico Real vs. Programado</div>
+            <div style="display:flex;gap:4px">
+              <button class="btn-toggle${state.avance.view==="acum"?" active":""}" data-action="avance-view" data-val="acum">Acumulado</button>
+              <button class="btn-toggle${state.avance.view==="parcial"?" active":""}" data-action="avance-view" data-val="parcial">Parcial</button>
+            </div>
+          </div>
           <div class="chart-box" style="height:150px"><canvas id="chart-avance-scurve"></canvas></div>
         </div>` : ""}
       </div>
@@ -1117,21 +1124,45 @@ function initEERRCharts(annualData, monthlyData, projKey){
 
   const av = AVANCE_DATA[projKey];
   if(av && av.serie && av.serie.length && document.getElementById("chart-avance-scurve")){
-    const allMeses = Array.from(new Set([...(av.serie||[]).map(p=>p.mes), ...(av.serieProg||[]).map(p=>p.mes)])).sort();
-    const realMap = Object.fromEntries((av.serie||[]).map(p=>[p.mes,p.pct]));
-    const progMap = Object.fromEntries((av.serieProg||[]).map(p=>[p.mes,p.pct]));
+    const realFull = (av.serie||[]).slice().sort((a,b)=>a.mes.localeCompare(b.mes));
+    // cortar el programado apenas llega a 100% — no arrastrar una línea plana después
+    const progFull = (av.serieProg||[]).slice().sort((a,b)=>a.mes.localeCompare(b.mes));
+    const progTrunc = [];
+    for(const p of progFull){ progTrunc.push(p); if(p.pct>=100) break; }
+
+    const allMeses = Array.from(new Set([...realFull.map(p=>p.mes), ...progTrunc.map(p=>p.mes)])).sort();
+    const realMap = Object.fromEntries(realFull.map(p=>[p.mes,p.pct]));
+    const progMap = Object.fromEntries(progTrunc.map(p=>[p.mes,p.pct]));
+
+    const isParcial = state.avance.view==="parcial";
+    function toSeries(map){
+      let prev = null;
+      return allMeses.map(m => {
+        const v = map[m];
+        if(v==null) return null;
+        if(!isParcial) return v;
+        const d = Math.round((v-(prev!=null?prev:0))*10)/10;
+        prev = v;
+        return d;
+      });
+    }
     const labels = allMeses.map(mesCorta);
     const datasets = [
-      {label:"Avance Real", data: allMeses.map(m=>realMap[m]!=null?realMap[m]:null), borderColor:C.navy, backgroundColor:C.navy, borderWidth:2.5, pointRadius:2, tension:.3, spanGaps:true},
+      {label:"Avance Real", data: toSeries(realMap), borderColor:C.navy, backgroundColor:C.navy, borderWidth:isParcial?0:2.5, pointRadius:isParcial?0:2, tension:.3, spanGaps:!isParcial, borderRadius:isParcial?3:0},
     ];
-    if(av.serieProg && av.serieProg.length){
-      datasets.push({label:"Avance Programado", data: allMeses.map(m=>progMap[m]!=null?progMap[m]:null), borderColor:C.gray, backgroundColor:C.gray, borderWidth:1.5, borderDash:[5,3], pointRadius:0, tension:.3, spanGaps:true});
+    if(progTrunc.length){
+      datasets.push({label:"Avance Programado", data: toSeries(progMap), borderColor:C.gray, backgroundColor:isParcial?C.gray+"80":C.gray, borderWidth:isParcial?0:1.5, borderDash:isParcial?[]:[5,3], pointRadius:0, tension:.3, spanGaps:!isParcial, borderRadius:isParcial?3:0});
     }
     buildChart("chart-avance-scurve", {
-      type:"line",
+      type: isParcial ? "bar" : "line",
       data:{ labels, datasets },
       legend:true,
-      scales:{ x:axisCat({ ticks:{font:{size:9},color:C.gray, maxTicksLimit:10} }), y:{ min:0, max:100, grid:{color:C.border}, ticks:{font:{size:9},color:C.gray, callback:v=>v+"%"}, border:{display:false} } },
+      scales:{
+        x:axisCat({ ticks:{font:{size:9},color:C.gray, maxTicksLimit:10} }),
+        y: isParcial
+          ? { beginAtZero:true, grid:{color:C.border}, ticks:{font:{size:9},color:C.gray, callback:v=>v+"%"}, border:{display:false} }
+          : { min:0, max:100, grid:{color:C.border}, ticks:{font:{size:9},color:C.gray, callback:v=>v+"%"}, border:{display:false} },
+      },
       tooltipCallbacks:{ label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y!=null?ctx.parsed.y.toFixed(1):"—"}%` },
     });
   }
@@ -2683,6 +2714,11 @@ function handleGlobalClick(e){
     case "consol-view": {
       state.consol.viewMode = target.getAttribute("data-val");
       renderConsolidadoTab();
+      break;
+    }
+    case "avance-view": {
+      state.avance.view = target.getAttribute("data-val");
+      renderEERRTab();
       break;
     }
     case "mob-view": {
