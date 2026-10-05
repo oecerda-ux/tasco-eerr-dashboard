@@ -637,6 +637,7 @@ function buildEERRTable(data, projKey){
 
 // ── EE.RR TAB ──
 // ── EERR COMPLETO (ambas empresas, todas las cuentas y centros de costo) ──
+const PROY_OCT_DIC = {"empresa":"TASCO","year":"2026","months":[9,10,11,12],"label":"Proy. Sep–Dic","byProject":{"003 OBRAS TERMINADAS":{"COSTOS DE EXPLOTACION":{"LEYES SOCIALES":[-10.41,-10.41,-10.41,-10.41],"SUELDOS Y SALARIOS":[-58.79,-58.79,-58.79,-58.79]}},"021 no":{"COSTOS DE EXPLOTACION":{"SUELDOS Y SALARIOS":[-1.74,-1.74,-1.74,-1.74]}},"024 EDIFICIOS PLAZA DE ASIS-LAS CONDES":{"COSTOS DE EXPLOTACION":{"MAQUINARIA Y EQUIPOS":[-1.4,-1.4,-1.4,-1.4]}},"030 RESORT PLAYA BLANCA - TONGOY":{"COSTOS DE EXPLOTACION":{"SUELDOS Y SALARIOS":[-6.97,-6.97,-6.97,-6.97]}},"124 PUNTA DE AGUILA":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[-0.11,-7.94,-7.94,-7.94],"GASTOS SUPERMERCADOS Y SIMILARES":[0,-0.52,-0.52,-0.52],"HONORARIOS":[-2.91,-2.91,-2.91,-2.91],"LEYES SOCIALES":[-24.08,-24.08,-24.08,-24.08],"MAQUINARIA Y EQUIPOS":[-1.86,-1.86,-1.86,-1.86],"MATERIALES":[0,-27.7,-27.7,-27.7],"SUB-CONTRATOS":[-1222.24,-1238.48,-1238.48,-1238.48],"SUELDOS Y SALARIOS":[-167.12,-167.18,-167.18,-167.18]}},"144 PARQUE SENADOR ESTEBANEZ - TEMUCO":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[-0.38,-0.64,-0.64,-0.64]}},"146 EDIFICIO HOLANDESA - TEMUCO CONSTRUCCION":{"COSTOS DE EXPLOTACION":{"GASTOS DE OFICINA CENTRAL":[-35.24,-35.24,-35.24,-35.24],"GASTOS GENERALES":[-21.4,-55.68,-55.68,-55.68],"GASTOS MANTENCION POST-VENTA":[-3.15,-3.15,-3.15,-3.15],"GASTOS SUPERMERCADOS Y SIMILARES":[0,-1.31,-1.31,-1.31],"LEYES SOCIALES":[-75.25,-75.25,-75.25,-75.25],"MAQUINARIA Y EQUIPOS":[-7.65,-7.65,-7.65,-7.65],"MATERIALES":[-61.19,-72.48,-72.48,-72.48],"SUB-CONTRATOS":[-134.58,-134.58,-134.58,-134.58],"SUELDOS Y SALARIOS":[-533.71,-533.71,-533.71,-533.71]}},"164 QUINTERO":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[-0.86,-0.86,-0.86,-0.86],"LEYES SOCIALES":[-6.35,-6.35,-6.35,-6.35],"MATERIALES":[0,-2.9,-2.9,-2.9],"SUB-CONTRATOS":[-4.45,-4.45,-4.45,-4.45],"SUELDOS Y SALARIOS":[-52.7,-52.7,-52.7,-52.7]}},"165 LO FONTECILLA":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[-2.59,-2.59,-2.59,-2.59],"MAQUINARIA Y EQUIPOS":[-4.2,-4.2,-4.2,-4.2]}},"172 LA CAPELLANIA LOS ANDES":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[0,-32.25,-32.25,-32.25],"GASTOS MANTENCION POST-VENTA":[0,-4.32,-4.32,-4.32],"HONORARIOS":[-7.36,-7.36,-7.36,-7.36],"LEYES SOCIALES":[-36.89,-36.89,-36.89,-36.89],"MAQUINARIA Y EQUIPOS":[-3.72,-3.72,-3.72,-3.72],"MATERIALES":[-60.82,-66.77,-66.77,-66.77],"SUB-CONTRATOS":[-3.03,-3.03,-3.03,-3.03],"SUELDOS Y SALARIOS":[-277.63,-277.63,-277.63,-277.63]}},"175 ROCA DE AGUILA":{"COSTOS DE EXPLOTACION":{"COSTOS ASOCIADOS A MANO DE OBRA":[0,-4.46,-4.46,-4.46],"GASTOS DE OFICINA CENTRAL":[-276.19,-276.19,-276.19,-276.19],"GASTOS GENERALES":[-123.86,-260.4,-260.4,-260.4],"LEYES SOCIALES":[-402.09,-402.09,-402.09,-402.09],"MAQUINARIA Y EQUIPOS":[-209.38,-209.38,-209.38,-209.38],"MAQUINAS":[-288.88,-305.35,-305.35,-305.35],"MATERIALES":[0,-2495.55,-2495.55,-2495.55],"SUB-CONTRATOS":[-2105.72,-2356.87,-2356.87,-2356.87],"SUELDOS Y SALARIOS":[-3093.32,-3093.32,-3093.32,-3093.32]}},"176 EL SAUZAL":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[-21.74,-32.55,-32.55,-32.55],"LEYES SOCIALES":[-98.48,-98.48,-98.48,-98.48],"MAQUINARIA Y EQUIPOS":[-6.23,-6.23,-6.23,-6.23],"MAQUINAS":[-0.16,-1.35,-1.35,-1.35],"MATERIALES":[0,-150.33,-150.33,-150.33],"SUB-CONTRATOS":[-477.55,-588.59,-588.59,-588.59],"SUELDOS Y SALARIOS":[-781.38,-781.38,-781.38,-781.38]}},"177 CONDOMINIO LA DEHESA (NOCEDAL)":{"COSTOS DE EXPLOTACION":{"ASESORIAS PROFESIONALES":[-18.77,-18.77,-18.77,-18.77],"GASTOS DE OFICINA CENTRAL":[-200.78,-200.78,-200.78,-200.78],"GASTOS EXTRAORDINARIOS":[0,-0.62,-0.62,-0.62],"GASTOS GENERALES":[-222.02,-248.5,-248.5,-248.5],"HONORARIOS":[0,-1.54,-1.54,-1.54]}},"179 VIVE QUINTA - QUINTA NORMAL":{"COSTOS DE EXPLOTACION":{"ASESORIAS PROFESIONALES":[-147.87,-147.87,-147.87,-147.87],"GASTOS DE OFICINA CENTRAL":[-12.76,-353.15,-353.15,-353.15],"GASTOS EXTRAORDINARIOS":[-1.76,-1.76,-1.76,-1.76],"GASTOS GENERALES":[-258.14,-480.96,-480.96,-480.96],"GASTOS SUPERMERCADOS Y SIMILARES":[-1.21,-1.7,-1.7,-1.7],"LEYES SOCIALES":[-450.84,-450.84,-450.84,-450.84],"MAQUINARIA Y EQUIPOS":[-45.56,-45.56,-45.56,-45.56],"MAQUINAS":[-93.23,-178.15,-178.15,-178.15],"MATERIALES":[0,-1095.49,-1095.49,-1095.49],"SUB-CONTRATOS":[-2501.64,-3278.37,-3278.37,-3278.37],"SUELDOS Y SALARIOS":[-2966.05,-2966.05,-2966.05,-2966.05]}},"180 EL MAÑIO-VALDIVIA":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[-0.93,-0.93,-0.93,-0.93]}},"183 EDIF.COLOMBIA-LA FLORIDA":{"COSTOS DE EXPLOTACION":{"GASTOS GENERALES":[0,-1.17,-1.17,-1.17],"LEYES SOCIALES":[-0.66,-0.66,-0.66,-0.66],"SUELDOS Y SALARIOS":[-5.85,-5.85,-5.85,-5.85]}},"184 CONDOINIO PEUMO 271-VITACURA":{"COSTOS DE EXPLOTACION":{"ASESORIAS PROFESIONALES":[-153.98,-153.98,-153.98,-153.98],"LEYES SOCIALES":[-33.4,-33.4,-33.4,-33.4],"MATERIALES":[0,1.76,1.76,1.76],"SUELDOS Y SALARIOS":[-459.64,-459.64,-459.64,-459.64]}},"764 QUINTERO":{"COSTOS DE EXPLOTACION":{"COSTO PROYECTO COSTA DEL MAR QUINTERO":[-1.21,-9.46,-9.46,-9.46]}},"772 LA CAPELLANIA LOS ANDES":{"COSTOS DE EXPLOTACION":{"COSTO PROYECTO CAPELLANIA":[-7.88,-18.35,-18.35,-18.35]},"GASTOS DE ADMINISTRACION Y VENTAS":{"ARRIENDOS Y GTOS.COMUNES":[0,-1.76,-1.76,-1.76]}},"001 OFICINA":{"COSTOS DE EXPLOTACION":{"SUELDOS Y SALARIOS":[-350.38,-350.38,-350.38,-1366.49],"LEYES SOCIALES":[-64.88,-64.88,-64.88,-253.03],"GASTOS GENERALES":[0.0,-136.94,-136.94,-136.94],"GASTOS SUPERMERCADOS Y SIMILARES":[0.0,-1.46,-1.46,-1.46],"MAQUINAS":[0.0,-96.47,-96.47,-96.47],"MATERIALES":[0.0,-196.92,-196.92,-196.92],"SUB-CONTRATOS":[0.0,-5.61,-5.61,-5.61],"GASTOS DE OFICINA CENTRAL":[0,1500,1500,1500]},"GASTOS DE ADMINISTRACION Y VENTAS":{"SUELDOS Y SALARIOS":[-249.93,-249.93,-249.93,-974.74],"LEYES SOCIALES":[-34.8,-34.8,-34.8,-135.74],"ASESORIAS PROFESIONALES":[0.0,-780.39,-780.39,-780.39],"ARRIENDOS Y GTOS.COMUNES":[0.0,-62.81,-62.81,-62.81],"CONTRIBUCIONES":[0.0,-11.61,-11.61,-11.61],"ELECTRICIDAD":[0.0,-14.44,-14.44,-14.44],"GASTOS BANCARIOS":[0.0,-12.83,-12.83,-12.83],"GASTOS GENERALES":[0.0,-189.15,-189.15,-189.15],"GASTOS NOTARIALES":[0.0,-0.9,-0.9,-0.9],"GASTOS SUPERMERCADOS Y SIMILARES":[0.0,-7.27,-7.27,-7.27],"MATERIALES":[0.0,-1.01,-1.01,-1.01],"TELEFONO-INTERNET-TELECOMUNICACIONES":[0.0,-49.31,-49.31,-49.31],"TRANSPORTE- COURIER- FLETES MERCADERIA":[0.0,-3.53,-3.53,-3.53]}}},"ingresos":{"175 ROCA DE AGUILA":{"CONTRATOS DE CONSTRUCCION":[0,10832.8,10832.8,10832.8]},"179 VIVE QUINTA - QUINTA NORMAL":{"CONTRATOS DE CONSTRUCCION":[0,13852.16,13852.16,13852.16]},"124 PUNTA DE AGUILA":{"CONTRATOS DE CONSTRUCCION":[0,0,0,12552.6]},"177 CONDOMINIO LA DEHESA (NOCEDAL)":{"CONTRATOS DE CONSTRUCCION":[0,0,0,17098]},"176 EL SAUZAL":{"CONTRATOS DE CONSTRUCCION":[0,0,0,20480]}},"reglas":{"003 OBRAS TERMINADAS":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","021 no":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","024 EDIFICIOS PLAZA DE ASIS-LAS CONDES":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","030 RESORT PLAYA BLANCA - TONGOY":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","124 PUNTA DE AGUILA":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","142 CASAS EL MONTE":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","144 PARQUE SENADOR ESTEBANEZ - TEMUCO":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","145 PARQUE SENADOR ESTEBANEZ 2 - TEMUCO 2":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","146 EDIFICIO HOLANDESA - TEMUCO CONSTRUCCION":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","147 FLOR DEL VALLE - MAIPU":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","164 QUINTERO":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","165 LO FONTECILLA":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","172 LA CAPELLANIA LOS ANDES":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","173 MACHALI - CONSTRUCCION":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","175 ROCA DE AGUILA":"Obra activa: promedio mensual Jun–Ago 2026 por cuenta, constante Oct–Dic","176 EL SAUZAL":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","177 CONDOMINIO LA DEHESA (NOCEDAL)":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","179 VIVE QUINTA - QUINTA NORMAL":"Obra activa: promedio mensual Jun–Ago 2026 por cuenta, constante Oct–Dic","180 EL MAÑIO-VALDIVIA":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","183 EDIF.COLOMBIA-LA FLORIDA":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","184 CONDOINIO PEUMO 271-VITACURA":"Obra activa: promedio mensual Jun–Ago 2026 por cuenta, constante Oct–Dic","764 QUINTERO":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","766 INMOB.LIMACHE LOTE B (2B3) MIRADOR":"Obra terminada / en cierre: 50% del promedio Jul–Ago 2026 por cuenta (desmovilización)","772 LA CAPELLANIA LOS ANDES":"Postventa: promedio mensual mar–ago 2026 (últimos 6 meses) por cuenta, constante Sep–Dic","001 OFICINA":"Oficina central: MO 700 UF/mes (+2.030 provisión fin de año en dic), facturación Grupo Tasco 660 UF/mes, otros gastos 911 UF/mes (prom. feb–sep sin agosto), recuperaciones 1.500 UF/mes — según Gasto_Oficina_Central_TASCO.xlsx"},"nota":"Estimación operacional de costos (costos de explotación + GAV). Ingresos Oct–Dic pendientes: cargar saldo por facturar en PROY_OCT_DIC.ingresos. No incluye partidas no operacionales."};
 const EERRFULL_CATS = [
   {key:"INGRESOS DE EXPLOTACION", label:"INGRESO DE EXPLOTACIÓN", totalKey:"ingExplotacion"},
   {key:"COSTOS DE EXPLOTACION", label:"COSTOS DE EXPLOTACIÓN", totalKey:"costExplotacion"},
@@ -690,7 +691,7 @@ function eerrFullValueGroupHTML(real, provision, bold){
       <span class="eerr-mini-label">${lbl}</span>
       <span class="eerr-row-value${bold?" bold":""}${v<0?" neg":""}">${eerrFullValueHTML(v)}</span>
     </span>`;
-  return `<span class="eerr-value-group">${mini("Real", real)}${mini("Provisión", provision)}${mini("Total", totalVal, true)}</span>`;
+  return `<span class="eerr-value-group">${mini("Real Ene–Sep", real)}${mini("Proy. Sep–Dic", provision)}${mini("Cierre proy.", totalVal, true)}</span>`;
 }
 
 function eerrFullCatRow(cat, total, accounts, expanded, txnLookup, provisionMap, categoryProvision){
@@ -755,6 +756,31 @@ function eerrFullIncomeProvisionsByMonth(year){
     byMonth[p.mes] = (byMonth[p.mes]||0) + p.monto;
   });
   return byMonth;
+}
+
+function eerrFullProjOctDic(empresa, year, projKey){
+  const P = (typeof PROY_OCT_DIC !== "undefined") ? PROY_OCT_DIC : null;
+  if(!P || P.empresa !== empresa || String(P.year) !== String(year)) return null;
+  const centers = projKey ? [projKey] : Object.keys(P.byProject);
+  const acct = {}, monthly = P.months.map(()=>({cost:0,gav:0,ing:0}));
+  const addTo = (cat, nombre, arr) => {
+    acct[cat] = acct[cat] || {};
+    acct[cat][nombre] = (acct[cat][nombre]||0) + arr.reduce((a,b)=>a+b,0);
+    arr.forEach((v,i) => {
+      if(cat==="COSTOS DE EXPLOTACION") monthly[i].cost += v;
+      else if(cat==="GASTOS DE ADMINISTRACION Y VENTAS") monthly[i].gav += v;
+      else if(cat==="INGRESOS DE EXPLOTACION") monthly[i].ing += v;
+    });
+  };
+  centers.forEach(c => {
+    [P.byProject[c], (P.ingresos||{})[c] ? {"INGRESOS DE EXPLOTACION":P.ingresos[c]} : null].forEach(src => {
+      if(!src) return;
+      Object.keys(src).forEach(cat => Object.keys(src[cat]).forEach(n => addTo(cat, n, src[cat][n])));
+    });
+  });
+  const catTot = {};
+  Object.keys(acct).forEach(cat => { catTot[cat] = Object.values(acct[cat]).reduce((a,b)=>a+b,0); });
+  return { acct, catTot, monthly, months:P.months };
 }
 
 function eerrFullCostProjection(empresa, year){
@@ -835,15 +861,17 @@ function renderEERRFullTab(){
     ? ((EERR_FULL_TXN[st.empresa][st.year]||{})[st.proySel]||null)
     : eerrFullUnionKeys(st.empresa, st.year);
 
-  const proj = null; // Proyección a fin de año (provisiones + costos proyectados) revertida a pedido — se muestran solo los reales.
-  const ingCatProvision = proj ? proj.ingresosProvisionTotal : 0;
-  const ingAcctProvisionMap = proj ? {"CONTRATOS DE CONSTRUCCION": proj.ingresosProvisionTotal} : null;
-  const costCatProvision = proj ? proj.costExplotacionProvisionTotal : 0;
-  const costAcctProvisionMap = proj ? proj.costosProvisionMap : null;
-  const gavCatProvision = proj ? proj.gastosAdminProvisionTotal : 0;
-  const margenExplotacionProvision = proj ? (ingCatProvision + costCatProvision) : 0;
-  const resultadoOperacionalProvision = proj ? (margenExplotacionProvision + gavCatProvision) : 0;
-  const utilidadProvision = proj ? resultadoOperacionalProvision : 0;
+  const projData = eerrFullProjOctDic(st.empresa, st.year, projActive ? st.proySel : null);
+  const proj = projData ? true : null;
+  const ingCatProvision = projData ? (projData.catTot["INGRESOS DE EXPLOTACION"]||0) : 0;
+  const ingAcctProvisionMap = projData ? (projData.acct["INGRESOS DE EXPLOTACION"]||null) : null;
+  const costCatProvision = projData ? (projData.catTot["COSTOS DE EXPLOTACION"]||0) : 0;
+  const costAcctProvisionMap = projData ? (projData.acct["COSTOS DE EXPLOTACION"]||null) : null;
+  const gavCatProvision = projData ? (projData.catTot["GASTOS DE ADMINISTRACION Y VENTAS"]||0) : 0;
+  const gavAcctProvisionMap = projData ? (projData.acct["GASTOS DE ADMINISTRACION Y VENTAS"]||null) : null;
+  const margenExplotacionProvision = projData ? (ingCatProvision + costCatProvision) : 0;
+  const resultadoOperacionalProvision = projData ? (margenExplotacionProvision + gavCatProvision) : 0;
+  const utilidadProvision = projData ? resultadoOperacionalProvision : 0;
 
   const empresaBtns = ["TASCO","BLC"].map(e=>
     `<button class="btn-toggle${st.empresa===e?" active":""}" data-action="eerrfull-empresa" data-val="${e}">${e}</button>`).join("");
@@ -860,17 +888,19 @@ function renderEERRFullTab(){
     kpiCard("Ingreso de Explotación", `UF ${fmtN(data.totals.ingExplotacion)}`, "Total período", true, C.pos),
     kpiCard("Margen de Explotación", `UF ${fmtN(data.totals.margenExplotacion)}`, null, data.totals.margenExplotacion>=0, C.navy),
     kpiCard("Resultado Operacional", `UF ${fmtN(data.totals.resultadoOperacional)}`, null, data.totals.resultadoOperacional>=0, C.terra),
-    kpiCard("Utilidad (Pérdida) del Ejercicio", `UF ${fmtN(data.totals.utilidad)}`, `${esc(st.empresa)} · ${esc(st.year)}${projActive?" · "+esc(st.proySel):""}`, data.totals.utilidad>=0, C.slate),
+    projData
+      ? kpiCard("Utilidad (Pérdida) proyectada a Dic", `UF ${fmtN(data.totals.utilidad + utilidadProvision)}`, `${esc(st.empresa)} · ${esc(st.year)}${projActive?" · "+esc(st.proySel):""} · real Ene–Sep UF ${fmtN(data.totals.utilidad)}`, (data.totals.utilidad + utilidadProvision)>=0, C.slate)
+      : kpiCard("Utilidad (Pérdida) del Ejercicio", `UF ${fmtN(data.totals.utilidad)}`, `${esc(st.empresa)} · ${esc(st.year)}${projActive?" · "+esc(st.proySel):""}`, data.totals.utilidad>=0, C.slate),
   ].join("");
 
   const headLabel = `ESTADO DE RESULTADOS — ${esc(st.empresa)} · ${esc(st.year)}${projActive?` · ${esc(st.proySel)}`:(isProy?" · Consolidado":"")}`;
-  const headFlags = proj ? `<span class="eerr-flag">&#128221; PROYECCI&Oacute;N A FIN DE A&Ntilde;O &middot; Provisiones de ingreso (Oct&ndash;Dic) y proyecci&oacute;n de costos (meses ${proj.projectMonths[0]}&ndash;12)</span>` : "";
+  const headFlags = proj ? `<span class="eerr-flag">&#128221; PROYECCI&Oacute;N SEP&ndash;DIC &middot; septiembre completado a costo promedio + Oct&ndash;Dic</span>` : "";
 
   let body = `<div class="eerr-head"><span>${headLabel}</span>${headFlags}</div>`;
   body += eerrFullCatRow(EERRFULL_CATS[0], data.totals.ingExplotacion, data.accounts["INGRESOS DE EXPLOTACION"], st.expanded, txnLookup, ingAcctProvisionMap, ingCatProvision);
   body += eerrFullCatRow(EERRFULL_CATS[1], data.totals.costExplotacion, data.accounts["COSTOS DE EXPLOTACION"], st.expanded, txnLookup, costAcctProvisionMap, costCatProvision);
   body += eerrFullSubtotalRow("MARGEN DE EXPLOTACIÓN", data.totals.margenExplotacion, false, margenExplotacionProvision);
-  body += eerrFullCatRow(EERRFULL_CATS[2], data.totals.gastosAdmin, data.accounts["GASTOS DE ADMINISTRACION Y VENTAS"], st.expanded, txnLookup, null, gavCatProvision);
+  body += eerrFullCatRow(EERRFULL_CATS[2], data.totals.gastosAdmin, data.accounts["GASTOS DE ADMINISTRACION Y VENTAS"], st.expanded, txnLookup, gavAcctProvisionMap, gavCatProvision);
   body += eerrFullSubtotalRow("RESULTADO OPERACIONAL", data.totals.resultadoOperacional, false, resultadoOperacionalProvision);
   body += eerrFullCatRow(EERRFULL_CATS[3], data.totals.ingNoOperacional, data.accounts["INGRESOS FUERA DE EXPLOTACION"], st.expanded, txnLookup);
   body += eerrFullCatRow(EERRFULL_CATS[4], data.totals.costNoOperacional, data.accounts["COSTOS FUERA DE EXPLOTACION"], st.expanded, txnLookup);
@@ -880,6 +910,9 @@ function renderEERRFullTab(){
     ? "Haz clic en INGRESO / COSTOS / GASTOS ADMIN. / NO OPERACIONALES para ver el detalle de cuentas, y en cualquier cuenta para ver sus movimientos."
     : `Haz clic en INGRESO / COSTOS / GASTOS ADMIN. / NO OPERACIONALES para ver el detalle de cuentas · incluye todos los centros de costo de ${esc(st.empresa)} · usa "Por Proyecto" para ver movimientos contables.`;
   body += `<div class="eerr-foot">&#128161; ${footMsg}</div>`;
+  if(projData){
+    body += `<div class="eerr-foot">&#128200; <b>Proyecci&oacute;n Sep&ndash;Dic ${esc(st.year)}</b>: septiembre se completa al costo promedio (sueldos y otros costos a&uacute;n no contabilizados) y se proyecta Oct&ndash;Dic; estimaci&oacute;n operacional de costos de explotaci&oacute;n y GAV. Obras activas (Rocas del &Aacute;guila, Vive Quinta, Peumo): promedio Jun&ndash;Ago por cuenta; obras en postventa (La Dehesa, Alcal&aacute;, Holandesa, Mirador del &Aacute;guila, La Capellan&iacute;a, Quintero): promedio Mar&ndash;Ago por cuenta (La Dehesa sin costos de obra: solo gastos generales, oficina central y asesor&iacute;as); otras obras terminadas: 50% del promedio Jul&ndash;Ago; oficina central seg&uacute;n supuestos de gasto de oficina (MO, Grupo Tasco, otros, recuperaciones, provisi&oacute;n de fin de a&ntilde;o). Ingresos: obras activas con el mismo criterio (promedio Jun&ndash;Ago) m&aacute;s provisiones informadas (MDA, La Dehesa, Alcal&aacute;) en diciembre; otros ingresos y partidas no operacionales no proyectados.</div>`;
+  }
 
   const monthlyArr = eerrFullMonthlyArray(data.monthly);
   const monthlyChartHTML = monthlyArr.length>0
@@ -903,6 +936,20 @@ function renderEERRFullTab(){
   const sumCos = monthlyArr.reduce((s,m)=>s+Math.abs(m.costExplotacion),0);
   const sumGav = monthlyArr.reduce((s,m)=>s+Math.abs(m.gastosAdmin),0);
   const sumRes = monthlyArr.reduce((s,m)=>s+m.resultadoOperacional,0);
+
+  const projRows = projData ? projData.months.map((mm,i) => {
+    const mo = projData.monthly[i];
+    const costos = Math.abs(mo.cost), gav = Math.abs(mo.gav), ing = mo.ing;
+    const margen = ing + mo.cost, resOp = margen + mo.gav;
+    return `<tr style="background:#fff7ed;font-style:italic">
+      <td style="color:${C.terra};font-weight:600">${esc(EERRFULL_MONTH_NAMES[mm-1])} ${esc(st.year)} <span style="font-size:9px">(${mm===9?"ajuste a costo prom.":"proy."})</span></td>
+      <td style="text-align:right;color:${C.pos}">${ing>0?`UF ${fmtN(ing)}`:"—"}</td>
+      <td style="text-align:right;color:${C.neg}">(UF ${fmtN(costos)})</td>
+      <td style="text-align:right;color:${C.neg}">(UF ${fmtN(gav)})</td>
+      <td style="text-align:right;color:${margen>=0?C.pos:C.neg}">${margen>=0?"":"("}UF ${fmtN(Math.abs(margen))}${margen<0?")":""}</td>
+      <td style="text-align:right"><span class="pill ${resOp>=0?"pos":"neg"}">${resOp>=0?"+":""}${(resOp/1000).toFixed(1)}K</span></td>
+    </tr>`;
+  }).join("") : "";
 
   const html = `<div class="page">
     <div class="toolbar">
@@ -929,7 +976,7 @@ function renderEERRFullTab(){
           <thead><tr>
             <th class="left">Período</th><th>Ingresos</th><th>Costos</th><th>GAV</th><th>Margen</th><th>Result. Operac.</th>
           </tr></thead>
-          <tbody>${monthRows}</tbody>
+          <tbody>${monthRows}${projRows}</tbody>
           <tfoot><tr>
             <td>TOTAL PERÍODO</td>
             <td style="text-align:right;color:#7ecf9a">UF ${fmtN(sumIng)}</td>
